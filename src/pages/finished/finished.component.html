@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar color="primary">
+    <ion-title>Finalizados</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-content padding>
+
+    <ion-grid *ngIf="( _wishListService.Lists |  slopes:true  ).length === 0">
+      <ion-row>
+        <ion-col class="text-center caja-vacia">
+          <ion-icon class="icono-grande" ios="ios-sunny" md="md-sunny"></ion-icon>
+          <p>
+            No hay ninguna lista Finalizada.
+          </p>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-card *ngFor="let list of _wishListService.Lists | slopes:true; let i = index">
+      <ion-item color="dark" (click)="seeDetails(list, i)">
+        <h2>{{list.name}}</h2>
+        <ion-note item-right>
+          {{list.items.length}}
+        </ion-note>
+      </ion-item>
+      <ion-list>
+        <ion-item (click)="seeDetails(list, i)" *ngFor="let item of list.items | slice:0:2">
+          <ion-icon *ngIf="!item.completed" ios="ios-square-outline" md="md-square-outline"></ion-icon>
+          <ion-icon *ngIf="item.completed" ios="ios-checkbox-outline" md="md-checkbox-outline"></ion-icon>
+          {{item.name}}
+        </ion-item>
+        <ion-item class="text-center" *ngIf="list.items.length > 2">
+          <ion-icon color="primary" ios="ios-arrow-dropdown" md="md-arrow-dropdown"></ion-icon>
+        </ion-item>
+      </ion-list>
+    </ion-card>
+
+  </ion-content>

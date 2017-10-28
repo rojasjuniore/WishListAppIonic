@@ -1,0 +1,26 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <ion-title>{{list.name}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-card>
+        <ion-card-header>
+            <ion-item>
+                <ion-label floating>Nombre de la Lista</ion-label>
+                <ion-input type="text" [(ngModel)]="list.name" name="name"></ion-input>
+            </ion-item>
+        </ion-card-header>
+        <ion-card-content>
+            <ion-list>
+                <ion-item ion-item *ngFor="let item of list.items" (click)="update(item)">
+                    <ion-icon item-left *ngIf="!item.completed" ios="ios-square-outline" md="md-square-outline"></ion-icon>
+                    <ion-icon item-left *ngIf="item.completed" ios="ios-checkbox-outline" md="md-checkbox-outline"></ion-icon>
+                    <h2 [class.strikethrough]="item.completed">{{item.name}}</h2>
+                </ion-item>
+            </ion-list>
+        </ion-card-content>
+    </ion-card>
+    <button (click)="showConfirm()" ion-button color="danger" class="button-block">Borrar List</button>
+</ion-content>

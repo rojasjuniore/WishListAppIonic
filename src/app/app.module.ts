@@ -3,10 +3,23 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
-import { HomePage } from '../pages/home/home';
+// Services
+
+import { WishListService } from './services/wish-list-services';
+
+//Pipes
+import { placeHolderPipe } from './pipes/placeholder.pipes';
+import { slopesPipe } from './pipes/slopes.pipes';
+
+
+
+
 import { TabsPage } from '../pages/tabs/tabs';
+import { finishedComponent } from '../pages/finished/finished.component';
+import { slopesComponent } from '../pages/slopes/slopes.component';
+import { addComponent } from '../pages/add/add.component';
+import { detailsComponent } from '../pages/details/details.component';
+
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -14,10 +27,14 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
-    ContactPage,
-    HomePage,
-    TabsPage
+    placeHolderPipe,
+    slopesPipe,
+    TabsPage,
+    finishedComponent,
+    slopesComponent,
+    addComponent,
+    detailsComponent
+
   ],
   imports: [
     BrowserModule,
@@ -26,15 +43,17 @@ import { SplashScreen } from '@ionic-native/splash-screen';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
-    ContactPage,
-    HomePage,
-    TabsPage
+    TabsPage,
+    finishedComponent,
+    slopesComponent,
+    addComponent,
+    detailsComponent
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    WishListService,
+    { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })
-export class AppModule {}
+export class AppModule { }
